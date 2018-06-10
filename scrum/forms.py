@@ -16,9 +16,9 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = {'firstName', 'lastName', 'department', 'city', 'availability', 'phone','email'}
         widgets = {
-            'firstName': forms.TextInput(attrs={'type': 'text','class':'form_input','placeholder':'Your First Name','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars'}),
-            'lastName': forms.TextInput(attrs={'type': 'text','class':'form_input',  'placeholder':'Your Last Name','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars'}),
-            'department': forms.TextInput(attrs={'type': 'text','class':'form_input', 'placeholder':'Your Department','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars'}),
-            'email': forms.EmailInput(attrs={'type': 'text','class':'form_input', 'placeholder':'Your Email','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars'}),
-            'phone': forms.TextInput(attrs={'type': 'text','class':'form_input', 'placeholder':'412-400-1234','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars'}),
+            'firstName': forms.TextInput(attrs={'type': 'text','class':'form_input','placeholder':'Your First Name','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
+            'lastName': forms.TextInput(attrs={'type': 'text','class':'form_input',  'placeholder':'Your Last Name','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
+            'department': forms.TextInput(attrs={'type': 'text','class':'form_input', 'placeholder':'Your Department','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
+            'email': forms.EmailInput(attrs={'type': 'text','class':'form_input', 'placeholder':'Your Email','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
+            'phone': forms.TextInput(attrs={'type': 'text','class':'form_input', 'placeholder':'412-400-1234','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
         }

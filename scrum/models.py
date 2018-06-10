@@ -8,6 +8,7 @@ from django.utils import timezone
 class Skill(models.Model):
     name = models.CharField(blank=True, null=True, max_length=50)
     proficiency = models.IntegerField()
+    yrOfExperience = models.IntegerField()
 
 
 class Profile(models.Model):
@@ -20,8 +21,6 @@ class Profile(models.Model):
     department = models.CharField(blank=True, null=True, max_length=50)
     city = models.CharField(blank=True, null=True, max_length=50)
     availability = models.CharField(max_length=3, choices=AVA_OPTION)
-    yrOfExperience = models.IntegerField()
-    have_skill = models.ForeignKey(Skill, related_name="have_skill", on_delete=models.CASCADE)
     phone = models.CharField(blank=True, null=True, max_length=50)
     email = models.CharField(blank=True, null=True, max_length=50)
     created_at = models.DateTimeField(default=timezone.now())
