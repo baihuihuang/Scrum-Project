@@ -5,12 +5,6 @@ from django.utils import timezone
 
 # Create your models here.
 
-class Skill(models.Model):
-    name = models.CharField(blank=True, null=True, max_length=50)
-    proficiency = models.IntegerField()
-    yrOfExperience = models.IntegerField()
-
-
 class Profile(models.Model):
     AVA_OPTION = (
         ('YES', 'Yes'),
@@ -24,6 +18,13 @@ class Profile(models.Model):
     phone = models.CharField(blank=True, null=True, max_length=50)
     email = models.CharField(blank=True, null=True, max_length=50)
     created_at = models.DateTimeField(default=timezone.now())
+
+
+class Skill(models.Model):
+    name = models.CharField(blank=True, null=True, max_length=50)
+    proficiency = models.IntegerField()
+    yrOfExperience = models.IntegerField()
+    profile = models.ForeignKey(Profile)
 
 
 class Manager(models.Model):

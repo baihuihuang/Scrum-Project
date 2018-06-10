@@ -11,7 +11,6 @@ class ProfileForm(forms.ModelForm):
 
     availability = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=AVA_OPTION)
 
-
     class Meta:
         model = Profile
         fields = {'firstName', 'lastName', 'department', 'city', 'availability', 'phone','email'}
@@ -21,4 +20,39 @@ class ProfileForm(forms.ModelForm):
             'department': forms.TextInput(attrs={'type': 'text','class':'form_input', 'placeholder':'Your Department','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
             'email': forms.EmailInput(attrs={'type': 'text','class':'form_input', 'placeholder':'Your Email','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
             'phone': forms.TextInput(attrs={'type': 'text','class':'form_input', 'placeholder':'412-400-1234','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
+        }
+
+
+class SkillForm(forms.ModelForm):
+    PRO_LEVEL = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+    )
+
+    SKILLS = (
+        ('Java', 'Java'),
+        ('Python', 'Python'),
+        ('C', 'C'),
+        ('C++', 'C++'),
+        ('C#', 'C#'),
+        ('SQL', 'SQL'),
+        ('MySQL', 'MySQL'),
+        ('MongoDB', 'MongoDB'),
+        ('Marketing', 'Marketing'),
+        ('Analytics', 'Analytics'),
+        ('Web Development', 'Web Development'),
+        ('Design', 'Design'),
+        ('Agile', 'Agile')
+    )
+    proficiency = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=PRO_LEVEL)
+    name = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=SKILLS)
+
+    class Meta:
+        model = Skill
+        fields = {'name', 'yrOfExperience'}
+        widgets = {
+            'yrOfExperience': forms.NumberInput(attrs={'class':'form_input', 'placeholder':'4 (years)','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
         }

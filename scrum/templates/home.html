@@ -89,27 +89,42 @@
             <ul class="contact-list">
                 <li class="form-group">
                     <label>First Name <span>*</span></label>
-                     {{form.firstName}}
+                    {{form.firstName}}
                 </li>
                 <li class="form-group">
                     <label>Last Name <span>*</span></label>
-                     {{form.lastName}}
+                    {{form.lastName}}
                 </li>
                 <li class="form-group">
                     <label>Department <span>*</span></label>
-                     {{form.department}}
+                    {{form.department}}
                 </li>
                 <li class="form-group">
                     <label>Email <span>*</span></label>
-                     {{form.email}}
+                    {{form.email}}
                 </li>
                 <li class="form-group">
                     <label>Phone <span>*</span></label>
-                     {{form.phone}}
+                    {{form.phone}}
                 </li>
                 <li class="form-group">
                     <label>Availability<span>*</span></label>
                     {{form.availability}}
+                </li>
+                <li class="form-group">
+                    <label>Skill 1:<span>*</span></label>
+                    <li class="form-group">
+                        <label>Skill:<span></span></label>
+                        {{skill.name}}
+                    </li>
+                     <li class="form-group">
+                        <label>Proficiency<span></span></label>
+                        {{skill.proficiency}}
+                    </li>
+                     <li class="form-group">
+                        <label>Year Of experience<span></span></label>
+                        {{skill.yrOfExperience}}
+                    </li>
                 </li>
                 <li class="last">
                     <button class="btn btn-large btn-theme" type="submit" id="send">Submit</button>

@@ -2,12 +2,14 @@ from django.shortcuts import render
 
 # Create your views here.
 from scrum.models import *
-from scrum.forms import ProfileForm
+from scrum.forms import ProfileForm, SkillForm
 from django.http import Http404
+
 
 def home(request):
     context = {}
     context['form'] = ProfileForm()
+    context['skill'] = SkillForm()
     return render(request, 'home.html', context)
 
 
