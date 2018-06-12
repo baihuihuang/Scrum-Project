@@ -5,5 +5,4 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^create_profile$', views.create_profile, name='createProfile'),
     url(r'^create_manager$', views.create_manager, name='createManager'),
-
 ]

@@ -56,3 +56,24 @@ class SkillForm(forms.ModelForm):
         widgets = {
             'yrOfExperience': forms.NumberInput(attrs={'class':'form_input', 'placeholder':'4 (years)','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
         }
+
+
+class TeamForm(forms.ModelForm):
+
+    SKILLS = (
+        ('Java', 'Java'),
+        ('Python', 'Python'),
+        ('C', 'C'),
+        ('C++', 'C++'),
+        ('C#', 'C#'),
+        ('SQL', 'SQL'),
+        ('MySQL', 'MySQL'),
+        ('MongoDB', 'MongoDB'),
+        ('Marketing', 'Marketing'),
+        ('Analytics', 'Analytics'),
+        ('Web Development', 'Web Development'),
+        ('Design', 'Design'),
+        ('Agile', 'Agile')
+    )
+
+    pass

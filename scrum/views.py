@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from scrum.models import *
-from scrum.forms import ProfileForm, SkillForm
+from scrum.forms import ProfileForm, SkillForm, TeamForm
 from django.http import Http404
 
 
@@ -42,25 +42,26 @@ def create_profile(request):
         raise Http404
     return render(request, 'home.html', context)
 
+
 def create_manager(request):
     context = {}
     try:
         if request.method == 'POST':
-            profile = Profile.objects.create()
-            form = ProfileForm(request.POST, instance=profile)
-            if form.is_valid():
-                form.save()
-                profile.save()
-                context['msg'] = "Submitted successful"
-                context['form'] = ProfileForm()
-                print("form is saved")
-            else:
-                context['msg'] = "Check your data"
-                print("form not valid")
-            return render(request, 'home.html', context)
+            # profile = Profile.objects.create()
+            # form = ProfileForm(request.POST, instance=profile)
+            # if form.is_valid():
+            #     form.save()
+            #     profile.save()
+            #     context['msg'] = "Submitted successful"
+            #     context['form'] = ProfileForm()
+            #     print("form is saved")
+            # else:
+            #     context['msg'] = "Check your data"
+            #     print("form not valid")
+            return render(request, 'manager.html', context)
         else:
-            context['form'] = ProfileForm()
-            return render(request, 'home.html', context)
+            # context['form'] = TeamForm()
+            return render(request, 'manager.html', context)
     except:
         print("error")
         raise Http404
