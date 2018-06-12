@@ -964,6 +964,16 @@ ul.contact-list li{
 	padding:0;
 }
 
+.sub_li{
+	width:45%;
+}
+.skill{
+margin: 0 auto;
+    display:flex;
+    flex: 1 1 0;
+     flex-direction:row;
+      justify-content: space-between;
+}
 ul.contact-list li input.form_input,ul.contact-list li textarea.form_textarea {
 	width: 95%;
 	padding:10px 5px;
@@ -1345,3 +1355,41 @@ img.pull-left{
 		line-height:1.5em;
 	}
 }
+
+#msg{
+width:50%;
+    radius:1rem;
+    margin-bottom:1rem;
+    color:	#127436;
+}
+
+.form-group > input{
+    width:85%;
+}
+
+h3{
+    font-family:Arial, Tahoma, Verdana, Sans-serif;
+}
+.last{
+    text-align:right;
+}
+
+.finalSub{
+    text-align:center;
+    margin-right:16rem;
+    margin-right:10rem;
+}
+
+.finalSub > button{
+
+    width:30rem;
+    margin: 0 auto;
+    margin-top:5rem;
+}
+
+.last > input{
+
+        background:#FF8033;
+}
+
+

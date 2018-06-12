@@ -23,7 +23,7 @@ class Profile(models.Model):
 class Skill(models.Model):
     name = models.CharField(blank=True, null=True, max_length=50)
     proficiency = models.IntegerField()
-    yrOfExperience = models.IntegerField()
+    yrOfExperience = models.IntegerField(blank=True)
     profile = models.ForeignKey(Profile)
 
 
