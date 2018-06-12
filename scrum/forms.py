@@ -96,7 +96,7 @@ class ManagerForm(forms.ModelForm):
         ('4', '4'),
         ('5', '5'),
     )
-    numberOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input', 'onchange': 'myFunction()'}), choices=TEAM_CHOICE)
+    numberOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input', 'onchange': 'myFunction()', 'id':'team-num'}), choices=TEAM_CHOICE)
     numberPPlOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TEAM_PEOPLE_CHOICE)
 
     class Meta:
