@@ -5,6 +5,8 @@ from django.utils import timezone
 
 # Create your models here.
 
+
+
 class Profile(models.Model):
     AVA_OPTION = (
         ('YES', 'Yes'),
@@ -28,6 +30,7 @@ class Skill(models.Model):
 
 
 class Manager(models.Model):
-    numberOfTeam = models.IntegerField(default=10)
+    numberOfTeam = models.IntegerField()
+    numberPPlOfTeam = models.IntegerField()
 
 

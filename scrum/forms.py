@@ -77,3 +77,23 @@ class TeamForm(forms.ModelForm):
     )
 
     pass
+
+
+class ManagerForm(forms.ModelForm):
+    TEAM_CHOICE = (
+        ('1', '1'),
+        ('2', '2'),
+    )
+    TEAM_PEOPLE_CHOICE = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+    )
+    numberOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TEAM_CHOICE)
+    numberPPlOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TEAM_PEOPLE_CHOICE)
+
+    class Meta:
+        model = Manager
+        fields = {'numberOfTeam', 'numberPPlOfTeam'}
