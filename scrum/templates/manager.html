@@ -25,6 +25,26 @@
     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png"/>
     <link rel="shortcut icon" href="ico/favicon.ico"/>
 
+    <!-- Javascript Library Files -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/parallax/jquery.parallax-1.1.3.js' %}"></script>
+    <script src="{% static 'js/nagging-menu.js' %}"></script>
+    <script src="{% static 'js/jquery.nav.js' %}"></script>
+    <script src="{% static 'js/prettyPhoto/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'js/portfolio/jquery.quicksand.js' %}"></script>
+    <script src="{% static 'js/portfolio/setting.js' %}"></script>
+    <script src="{% static 'js/hover/jquery-hover-effect.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollTo.min.js' %}"></script>
+    <script src="{% static 'js/animate.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="contactform/contactform.js"></script>
+
+    <!-- Template Custom Javascript File -->
+    <script src="{% static 'js/custom.js' %}"></script>
     <!-- =======================================================
       Theme Name: Vesperr
       Theme URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
@@ -61,11 +81,17 @@
 {% block javascript %}
 
 <script>
-    $("#add").onclick(function () {
-        var newItem = document.getElementById("demo");
 
+    var num = $("#team-num > select");
+    var sec = 1;
+    function myFunction(){
+        console.log(num)
+        if(num > 5) alert("You can only add 5 primary skills");
+        else {var element = "primary_"+ num;
+        console.log(element);
+        document.getElementById(element).style.display = "initial";}
 
-    });
+    }
 
 
 
@@ -93,7 +119,7 @@
             <div id="errormessage"></div>
 
             <ul class="contact-list">
-                <li class="form-group">
+                <li class="form-group" id="team-num">
                     <label>Number of Teams:<span>*</span></label>
                     {{form.numberOfTeam}}
                 </li>
@@ -120,7 +146,7 @@
                         </div>
                         <div id="primary_2" style="display: none;">
                             <li class="form-group">
-                                <label>Skill 1:<span></span></label>
+                                <label>Skill 2:<span></span></label>
                                 {{skill.name}}
                             </li>
                             <li class="form-group">
@@ -134,7 +160,7 @@
                         </div>
                         <div id="primary_3" style="display: none;">
                             <li class="form-group">
-                                <label>Skill 1:<span></span></label>
+                                <label>Skill 3:<span></span></label>
                                 {{skill.name}}
                             </li>
                             <li class="form-group">
@@ -169,7 +195,7 @@
                         </div>
                         <div id="secondary_2" style="display: none;">
                             <li class="form-group">
-                                <label>Skill 1:<span></span></label>
+                                <label>Skill 2:<span></span></label>
                                 {{skill.name}}
                             </li>
                             <li class="form-group">
@@ -183,7 +209,7 @@
                         </div>
                         <div id="secondary_3" style="display: none;">
                             <li class="form-group">
-                                <label>Skill 1:<span></span></label>
+                                <label>Skill 3:<span></span></label>
                                 {{skill.name}}
                             </li>
                             <li class="form-group">
@@ -241,27 +267,6 @@
     </div>
 </footer>
 <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-48 active"></i></a>
-
-<!-- Javascript Library Files -->
-<script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/jquery.easing.js' %}"></script>
-<script src="{% static 'js/bootstrap.js' %}"></script>
-<script src="{% static 'js/parallax/jquery.parallax-1.1.3.js' %}"></script>
-<script src="{% static 'js/nagging-menu.js' %}"></script>
-<script src="{% static 'js/jquery.nav.js' %}"></script>
-<script src="{% static 'js/prettyPhoto/jquery.prettyPhoto.js' %}"></script>
-<script src="{% static 'js/portfolio/jquery.quicksand.js' %}"></script>
-<script src="{% static 'js/portfolio/setting.js' %}"></script>
-<script src="{% static 'js/hover/jquery-hover-effect.js' %}"></script>
-<script src="{% static 'js/jquery.scrollTo.min.js' %}"></script>
-<script src="{% static 'js/animate.js' %}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
-
-<!-- Contact Form JavaScript File -->
-<script src="contactform/contactform.js"></script>
-
-<!-- Template Custom Javascript File -->
-<script src="{% static 'js/custom.js' %}"></script>
 
 </body>
 

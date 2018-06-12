@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from scrum.models import *
-from scrum.forms import ProfileForm, SkillForm, TeamForm,  ManagerForm
+from scrum.forms import ProfileForm, SkillForm, TeamForm, ManagerForm
 from django.http import Http404
 
 
@@ -13,12 +13,9 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-def create_manager(request):
-    pass
-
-
 def create_profile(request):
     context = {}
+
     try:
         if request.method == 'POST':
             profile = Profile.objects.create()
@@ -26,6 +23,10 @@ def create_profile(request):
             if form.is_valid():
                 form.save()
                 profile.save()
+                skill = Skill.objects.create(profile=profile)
+                sForm = SkillForm(request.POST, instance=skill)
+                sForm.save()
+                print("sForm save")
                 context['msg'] = "Submitted successful"
                 context['form'] = ProfileForm()
                 context['skill'] = SkillForm()

@@ -5,8 +5,6 @@ from django.utils import timezone
 
 # Create your models here.
 
-
-
 class Profile(models.Model):
     AVA_OPTION = (
         ('YES', 'Yes'),
@@ -23,10 +21,10 @@ class Profile(models.Model):
 
 
 class Skill(models.Model):
-    name = models.CharField(blank=True, null=True, max_length=50)
-    proficiency = models.IntegerField()
-    yrOfExperience = models.IntegerField(blank=True)
-    profile = models.ForeignKey(Profile)
+    name = models.CharField(blank=True, default='null', max_length=50)
+    proficiency = models.IntegerField(default=0)
+    yrOfExperience = models.IntegerField(blank=True, default=0)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
 
 class Manager(models.Model):

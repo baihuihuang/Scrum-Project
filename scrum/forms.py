@@ -25,6 +25,7 @@ class ProfileForm(forms.ModelForm):
 
 class SkillForm(forms.ModelForm):
     PRO_LEVEL = (
+        ('null', 'Please Choose'),
         ('1', '1'),
         ('2', '2'),
         ('3', '3'),
@@ -33,6 +34,7 @@ class SkillForm(forms.ModelForm):
     )
 
     SKILLS = (
+        ('null', 'Please Choose'),
         ('Java', 'Java'),
         ('Python', 'Python'),
         ('C', 'C'),
@@ -61,6 +63,7 @@ class SkillForm(forms.ModelForm):
 class TeamForm(forms.ModelForm):
 
     SKILLS = (
+        ('null', 'Please Choose'),
         ('Java', 'Java'),
         ('Python', 'Python'),
         ('C', 'C'),
@@ -81,17 +84,19 @@ class TeamForm(forms.ModelForm):
 
 class ManagerForm(forms.ModelForm):
     TEAM_CHOICE = (
+        ('null', 'Please Choose'),
         ('1', '1'),
         ('2', '2'),
     )
     TEAM_PEOPLE_CHOICE = (
+        ('null', 'Please Choose'),
         ('1', '1'),
         ('2', '2'),
         ('3', '3'),
         ('4', '4'),
         ('5', '5'),
     )
-    numberOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TEAM_CHOICE)
+    numberOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input', 'onchange': 'myFunction()'}), choices=TEAM_CHOICE)
     numberPPlOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TEAM_PEOPLE_CHOICE)
 
     class Meta:
