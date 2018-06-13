@@ -60,7 +60,36 @@ class SkillForm(forms.ModelForm):
         }
 
 
-class TeamForm(forms.ModelForm):
+class ManagerForm(forms.ModelForm):
+    TEAM_CHOICE = (
+        ('null', 'Please Choose'),
+        ('1', '1'),
+        ('2', '2'),
+    )
+    TEAM_PEOPLE_CHOICE = (
+        ('null', 'Please Choose'),
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+    )
+    numberOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input', 'onchange': 'myFunction()', 'id':'team-num'}), choices=TEAM_CHOICE)
+    numberPPlOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TEAM_PEOPLE_CHOICE)
+
+    class Meta:
+        model = Manager
+        fields = {'numberOfTeam', 'numberPPlOfTeam'}
+
+
+class MinSkillForm(forms.ModelForm):
+    PRO_LEVEL = (
+        ('null', 'Please Choose'),
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+    )
 
     SKILLS = (
         ('null', 'Please Choose'),
@@ -78,27 +107,12 @@ class TeamForm(forms.ModelForm):
         ('Design', 'Design'),
         ('Agile', 'Agile')
     )
-
-    pass
-
-
-class ManagerForm(forms.ModelForm):
-    TEAM_CHOICE = (
-        ('null', 'Please Choose'),
-        ('1', '1'),
-        ('2', '2'),
-    )
-    TEAM_PEOPLE_CHOICE = (
-        ('null', 'Please Choose'),
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-    )
-    numberOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input', 'onchange': 'myFunction()', 'id':'team-num'}), choices=TEAM_CHOICE)
-    numberPPlOfTeam = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TEAM_PEOPLE_CHOICE)
+    proficiency = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=PRO_LEVEL)
+    name = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=SKILLS)
 
     class Meta:
-        model = Manager
-        fields = {'numberOfTeam', 'numberPPlOfTeam'}
+        model = MinSkill
+        fields = {'name', 'yrOfExperience'}
+        widgets = {
+            'yrOfExperience': forms.NumberInput(attrs={'class':'form_input', 'placeholder':'4 (years)','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
+        }

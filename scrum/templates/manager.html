@@ -111,8 +111,33 @@
     }
 
 
+
 </script>
 {% endblock %}
+ Section about
+{% if people%}
+<section id="about" class="section" style="background:#f5f5f5;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="heading">
+                    <h3><span>Team Match Result</span></h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {%for p in people %}
+            <div class="span3">
+                <div class="roles">
+                    <i class="icon-beaker icon-10x" style="margin: 0 auto;"></i>
+                    <h5><strong>{{ p.profile.firstName }} {{ p.profile.lastName }}</strong></h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
 
 <!-- section intro -->
 <section id="profile">
@@ -126,7 +151,7 @@
                 </div>
             </div>
         </div>
-        <form action="{% url 'createProfile' %}" method="post" role="form" class="contactForm">
+        <form action="{% url 'matchTeam' %}" method="post" role="form" class="contactForm">
             {{msg}}
             <div id="sendmessage"></div>
             <div id="errormessage"></div>
@@ -146,98 +171,98 @@
                         <div id="team_primary_1">
                             <li class="form-group">
                                 <label>Skill 1:<span></span></label>
-                                {{skill.name}}
+                                {{minForm.name}}
                             </li>
                             <li class="form-group">
                                 <label>Minimum Proficiency<span></span></label>
-                                {{skill.proficiency}}
+                                {{minForm.proficiency}}
                             </li>
                             <li class="form-group">
                                 <label>Minimum Year of experience<span></span></label>
-                                {{skill.yrOfExperience}}
+                                {{minForm.yrOfExperience}}
                             </li>
                         </div>
-                        <div id="team_primary_2" style="display: none;">
-                            <li class="form-group">
-                                <label>Skill 2:<span></span></label>
-                                {{skill.name}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Proficiency<span></span></label>
-                                {{skill.proficiency}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Year of experience<span></span></label>
-                                {{skill.yrOfExperience}}
-                            </li>
-                        </div>
-                        <div id="team_primary_3" style="display: none;">
-                            <li class="form-group">
-                                <label>Skill 3:<span></span></label>
-                                {{skill.name}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Proficiency<span></span></label>
-                                {{skill.proficiency}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Year of experience<span></span></label>
-                                {{skill.yrOfExperience}}
-                            </li>
-                        </div>
-                        <li class="last">
-                            <input type="button" onclick="myFunction2()" class="btn btn-large btn-theme" id="add"
-                                   value="Add">
-                        </li>
-                    </div>
-                    <div class="sub_li" id="team2" style="display: none;">
-                        <h3>Team 2</h3>
-                        <div id="team2_primary_1">
-                            <li class="form-group">
-                                <label>Skill 1:<span></span></label>
-                                {{skill.name}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Proficiency<span></span></label>
-                                {{skill.proficiency}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Year of experience<span></span></label>
-                                {{skill.yrOfExperience}}
-                            </li>
-                        </div>
-                        <div id="team2_primary_2" style="display: none;">
-                            <li class="form-group">
-                                <label>Skill 2:<span></span></label>
-                                {{skill.name}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Proficiency<span></span></label>
-                                {{skill.proficiency}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Year of experience<span></span></label>
-                                {{skill.yrOfExperience}}
-                            </li>
-                        </div>
-                        <div id="team2_primary_3" style="display: none;">
-                            <li class="form-group">
-                                <label>Skill 3:<span></span></label>
-                                {{skill.name}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Proficiency<span></span></label>
-                                {{skill.proficiency}}
-                            </li>
-                            <li class="form-group">
-                                <label>Minimum Year of experience<span></span></label>
-                                {{skill.yrOfExperience}}
-                            </li>
-                        </div>
-                        <li class="last">
-                            <input type="button" onclick="myFunction3()" class="btn btn-large btn-theme" id="add"
-                                   value="Add">
-                        </li>
+                        <!--<div id="team_primary_2" style="display: none;">-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Skill 2:<span></span></label>-->
+                                <!--{{minForm.name}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Proficiency<span></span></label>-->
+                                <!--{{minForm.proficiency}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Year of experience<span></span></label>-->
+                                <!--{{minForm.yrOfExperience}}-->
+                            <!--</li>-->
+                        <!--</div>-->
+                        <!--<div id="team_primary_3" style="display: none;">-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Skill 3:<span></span></label>-->
+                                <!--{{minForm.name}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Proficiency<span></span></label>-->
+                                <!--{{minForm.proficiency}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Year of experience<span></span></label>-->
+                                <!--{{minForm.yrOfExperience}}-->
+                            <!--</li>-->
+                        <!--</div>-->
+                        <!--<li class="last">-->
+                            <!--<input type="button" onclick="myFunction2()" class="btn btn-large btn-theme" id="add"-->
+                                   <!--value="Add">-->
+                        <!--</li>-->
+                    <!--</div>-->
+                    <!--<div class="sub_li" id="team2" style="display: none;">-->
+                        <!--<h3>Team 2</h3>-->
+                        <!--<div id="team2_primary_1">-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Skill 1:<span></span></label>-->
+                                <!--{{minForm.name}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Proficiency<span></span></label>-->
+                                <!--{{minForm.proficiency}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Year of experience<span></span></label>-->
+                                <!--{{minForm.yrOfExperience}}-->
+                            <!--</li>-->
+                        <!--</div>-->
+                        <!--<div id="team2_primary_2" style="display: none;">-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Skill 2:<span></span></label>-->
+                                <!--{{minForm.name}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Proficiency<span></span></label>-->
+                                <!--{{minForm.proficiency}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Year of experience<span></span></label>-->
+                                <!--{{minForm.yrOfExperience}}-->
+                            <!--</li>-->
+                        <!--</div>-->
+                        <!--<div id="team2_primary_3" style="display: none;">-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Skill 3:<span></span></label>-->
+                                <!--{{minForm.name}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Proficiency<span></span></label>-->
+                                <!--{{minForm.proficiency}}-->
+                            <!--</li>-->
+                            <!--<li class="form-group">-->
+                                <!--<label>Minimum Year of experience<span></span></label>-->
+                                <!--{{minForm.yrOfExperience}}-->
+                            <!--</li>-->
+                        <!--</div>-->
+                        <!--<li class="last">-->
+                            <!--<input type="button" onclick="myFunction3()" class="btn btn-large btn-theme" id="add"-->
+                                   <!--value="Add">-->
+                        <!--</li>-->
                     </div>
                 </div>
                 <li class="last finalSub">

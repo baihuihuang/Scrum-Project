@@ -28,7 +28,11 @@ class Skill(models.Model):
 
 
 class Manager(models.Model):
-    numberOfTeam = models.IntegerField()
-    numberPPlOfTeam = models.IntegerField()
+    numberOfTeam = models.IntegerField(null=True, name="numberOfTeam")
+    numberPPlOfTeam = models.IntegerField(null=True, name="numberPPlOfTeam")
 
 
+class MinSkill(models.Model):
+    name = models.CharField(blank=True, default='null', max_length=50)
+    proficiency = models.IntegerField(default=0)
+    yrOfExperience = models.IntegerField(blank=True, default=0)
