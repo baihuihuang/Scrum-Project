@@ -24,7 +24,8 @@ class Skill(models.Model):
     name = models.CharField(blank=True, default='null', max_length=50)
     proficiency = models.IntegerField(default=0)
     yrOfExperience = models.IntegerField(blank=True, default=0)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='skillSet')
+    type = models.CharField(blank=True, null=True, max_length=1)
 
 
 class Manager(models.Model):

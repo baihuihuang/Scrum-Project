@@ -1,47 +1,81 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render
 
 # Create your views here.
 from scrum.models import *
 from scrum.forms import ProfileForm, SkillForm, ManagerForm, MinSkillForm
 from django.http import Http404
+from django.forms import modelformset_factory
 
 
 def home(request):
     context = {}
-    context['form'] = ProfileForm()
-    context['skill'] = SkillForm()
+    context['people'] = Profile.objects.all()
     return render(request, 'home.html', context)
 
 
 def create_profile(request):
     context = {}
+    profile = Profile.objects.create()
+    form = ProfileForm(request.POST, instance=profile)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            profile.save()
+            skill = Skill.objects.create(profile=profile)
+            SkillFormSet = modelformset_factory(Skill,form=SkillForm)
+            try:
+                formset = SkillFormSet(request.POST)
+            except ValidationError:
+                formset = None
 
-    try:
-        if request.method == 'POST':
-            profile = Profile.objects.create()
-            form = ProfileForm(request.POST, instance=profile)
-            if form.is_valid():
-                form.save()
-                profile.save()
-                skill = Skill.objects.create(profile=profile)
-                sForm = SkillForm(request.POST, instance=skill)
-                sForm.save()
-                print("sForm save")
-                context['msg'] = "Submitted successful"
-                context['form'] = ProfileForm()
-                context['skill'] = SkillForm()
-                print("form is saved")
-            else:
-                context['msg'] = "Check your data"
-                print("form not valid")
-            return render(request, 'home.html', context)
-        else:
+            formset.save()
+            print(formset.has_changed())
+            print("sForm save")
+            context['msg'] = "Submitted successful"
             context['form'] = ProfileForm()
-            return render(request, 'home.html', context)
-    except:
-        print("error")
-        raise Http404
-    return render(request, 'home.html', context)
+            context['skills'] = modelformset_factory(Skill, form=SkillForm,extra=5)
+            context['secSkills'] = modelformset_factory(Skill, form=SkillForm,extra=5)
+            print("form is saved")
+        else:
+            context['msg'] = "Check your data"
+            print("form not valid")
+    else:
+        context['form'] = ProfileForm()
+        context['skills'] = modelformset_factory(Skill, form=SkillForm)
+        context['secSkills'] = modelformset_factory(Skill, form=SkillForm)
+    return render(request, 'profile.html', context)
+
+    #
+    # try:
+    #     if request.method == 'POST':
+    #         profile = Profile.objects.create()
+    #         form = ProfileForm(request.POST, instance=profile)
+    #         if form.is_valid():
+    #             form.save()
+    #             profile.save()
+    #             skill = Skill.objects.create(profile=profile)
+    #             SkillFormSet = modelformset_factory(Skill)
+    #             formset = SkillFormSet(request.POST)
+    #             if formset.is_valid():
+    #                 formset.save()
+    #             print("sForm save")
+    #             context['msg'] = "Submitted successful"
+    #             context['form'] = ProfileForm()
+    #             context['skills'] = modelformset_factory(SkillForm,extra=5)
+    #             context['secSkills'] = modelformset_factory(SkillForm,extra=5)
+    #             print("form is saved")
+    #         else:
+    #             context['msg'] = "Check your data"
+    #             print("form not valid")
+    #         return render(request, 'home.html', context)
+    #     else:
+    #         context['form'] = ProfileForm()
+    #         return render(request, 'test_form.html', context)
+    # except:
+    #     print("error")
+    #     raise Http404
+    # return render(request, 'test_form.html', context)
 
 
 def create_manager(request):

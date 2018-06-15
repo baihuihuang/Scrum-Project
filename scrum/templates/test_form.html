@@ -63,8 +63,8 @@
                 <div class="navigation">
                     <nav>
                         <ul class="nav pull-right">
-                            <li class="current"><a href="{% url 'home' %}">Home</a></li>
-                            <li><a href="{% url 'createProfile' %}">Profile</a></li>
+                            <li class="current"><a href="#intro">Home</a></li>
+                            <li><a href="#profile">Profile</a></li>
                             <li><a href="{% url 'createManager' %}">Manager</a></li>
                         </ul>
                     </nav>
@@ -90,10 +90,6 @@
 <script>
     var num = 1;
     var sec = 1;
-    $( document ).ready(function() {
-    document.getElementById("primary_1").style.display = "initial";
-    document.getElementById("sec_1").style.display = "initial";
-});
     function myFunction(){
         num++;
         if(num > 5) alert("You can only add 5 primary skills");
@@ -105,20 +101,11 @@
     function myFunction2(){
         sec++;
         if(sec > 5) alert("You can only add 5 primary skills");
-        else {var element = "sec_"+ sec;
+        else {var element = "secondary_"+ sec;
         console.log(element);
         document.getElementById(element).style.display = "initial";}
 
     }
-
-
-
-
-
-
-
-
-
 
 
 </script>
@@ -127,131 +114,21 @@
 
 
 <!-- section intro -->
-<section id="about" class="section">
+<section id="profile">
     <div class="container">
         <div class="row">
             <div class="span12">
                 <div class="heading">
-                    <h3><span>All the profile</span></h3>
+                    <h3><span>Profile Editor</span></h3>
                 </div>
-            </div>
-        </div>
-        <div class="span12">
-            <table>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Dept.</th>
-                    <th>Skill 1</th>
-                    <th>Pro Level</th>
-                    <th>Exp year</th>
-                    <th>Skill 2</th>
-                    <th>Pro Level</th>
-                    <th>Exp year</th>
-                    <th>Skill 3</th>
-                    <th>Pro Level</th>
-                    <th>Exp year</th>
-                    <th>Skill 4</th>
-                    <th>Pro Level</th>
-                    <th>Exp year</th>
-                    <th>Skill 5</th>
-                    <th>Pro Level</th>
-                    <th>Exp year</th>
-                </tr>
-                {% for p in people%}
-                <tr>
-                    <td>{{p.firstName}}</td>
-                    <td>{{p.lastName}}</td>
-                    <td>{{p.department}}</td>
-                    {% for s in p.skillSet.all|default:"none"%}
-                    <td>{{s.name}}</td>
-                    <td>{{s.proficiency}}</td>
-                    <td>{{s.yrOfExperience}}</td>
-                    {% endfor %}
-                    {% if p.skillSet == None%}
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    {% endif %}
-                    {% if p.skillSet.count == 1%}
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    {% endif %}
-                    {% if p.skillSet.count == 2%}
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
-</section>
-<!-- end intro -->
-
-<!-- end section contact -->
-
-<footer>
-    <div class="verybottom">
-        <div class="container">
-            <div class="row">
-                <div class="span12">
-                    <div class="aligncenter">
-                        <div class="logo">
-                            <a class="brand" href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}"
-                                                                          alt="Scrum"/></a>
-                        </div>
-                        <p>
-                            &copy; Scrum Team2 labs Inc - All right reserved
-                        </p>
-                        <div class="credits">
-                            <!--
-                              All the links in the footer should remain intact.
-                              You can delete the links only if you purchased the pro version.
-                              Licensing information: https://bootstrapmade.com/license/
-                              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Vesperr
-                            -->
-                        </div>
-                    </div>
+                <div class="sub-heading">
                 </div>
             </div>
         </div>
     </div>
-</footer>
-<a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-48 active"></i></a>
+    <table>
+        {{ formset }}
+    </table>
 
 </body>
 
