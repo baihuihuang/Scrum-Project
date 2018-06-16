@@ -49,8 +49,13 @@ class SkillForm(forms.ModelForm):
         ('Design', 'Design'),
         ('Agile', 'Agile')
     )
+
+    TIME = (
+
+    )
     proficiency = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=PRO_LEVEL)
     name = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=SKILLS)
+    timeZone = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TIME)
 
     class Meta:
         model = Skill
@@ -79,6 +84,8 @@ class ManagerForm(forms.ModelForm):
     class Meta:
         model = Manager
         fields = {'numberOfTeam', 'numberPPlOfTeam'}
+
+
 
 
 class MinSkillForm(forms.ModelForm):

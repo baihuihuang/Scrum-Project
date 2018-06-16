@@ -94,54 +94,15 @@ def create_manager(request):
     return render(request, 'manager.html', context)
 
 
-# def match_team(request):
-#     context = {}
-#     manager = Manager.objects.create()
-#     min_skill = MinSkill.objects.create()
-#
-#     if request.method == 'POST':
-#         form = ManagerForm(request.POST, instance=manager)
-#         minSForm = MinSkillForm(request.POST, instance=min_skill)
-#         minSForm.save()
-#         min_skill.save()
-#         numTeam = form.data['numberOfTeam']
-#         numPeo = form.data['numberPPlOfTeam']
-#         skill = minSForm.data['name']
-#         pro = minSForm.data['proficiency']
-#         yr = minSForm.data['yrOfExperience']
-#         print(pro)
-#         print(skill)
-#         print(yr)
-#         candidate = Skill.objects.filter(name=skill, proficiency__gt=pro,yrOfExperience__gt=yr)
-#         context['people'] = candidate
-#         context['minForm'] = MinSkillForm()
-#         return render(request, 'manager.html', context)
-#     else:
-#         context['minForm'] = MinSkillForm()
-#         context['form'] = ManagerForm()
-#         return render(request, 'manager.html', context)
-#     # try:
-#     #     manager = Manager.objects.create()
-#     #     if request.method == 'POST':
-#     #         form = ManagerForm(request.POST, instance=manager)
-#     #         print (form.numberOfTeam)
-#     #         return render(request, 'manager.html', context)
-#     #     else:
-#     #         context['minForm'] = MinSkillForm()
-#     #         context['form'] = ManagerForm()
-#     #         return render(request, 'manager.html', context)
-#     #
-#     # except:
-#     #     print("error")
-#     #     raise Http404
-#     return render(request, 'manager.html', context)
-
 def match_team(request):
     context = {}
     manager = Manager.objects.create()
-    min_skill = MinSkill.objects.create()
 
     if request.method == 'POST':
+        # get the manager input
+        form = ManagerForm(request.POST, instance=manager)
+        numberOfPeople = form.data['numberPPlOfTeam']
+        form.save()
 
         # all the value from team1
         name_skill1_team1 = request.POST["name_skill1_team1"]
@@ -149,42 +110,37 @@ def match_team(request):
         yr_skill1_team1 = request.POST["yr_skill1_team1"]
         candidate_1 = Skill.objects.filter(name=name_skill1_team1, proficiency__gt=proficiency_skill1_team1,
                                            yrOfExperience__gt=yr_skill1_team1)
-        for c in candidate_1:
-            print(c.name)
+        candidate_2 = None
+
         if 'name_skill2_team1' in request.POST:
             name_skill2_team1 = request.POST["name_skill2_team1"]
             proficiency_skill2_team1 = request.POST["proficiency_skill2_team1"]
             yr_skill2_team1 = request.POST["yr_skill2_team1"]
             candidate_2 = Skill.objects.filter(name=name_skill2_team1, proficiency__gt=proficiency_skill2_team1,
                                                yrOfExperience__gt=yr_skill2_team1)
-            for c in candidate_2:
-                print(c.name)
 
+        if candidate_2 is None and candidate_1 is not None:
+            candidate_1 = candidate_1.order_by('proficiency', 'yrOfExperience')[:int(numberOfPeople)]
+            context['people'] = candidate_1
+        elif candidate_1 is None and candidate_2 is not None:
+            candidate_2 = candidate_2.order_by('proficiency', 'yrOfExperience')[:int(numberOfPeople)]
+            context['people'] = candidate_2
+        elif candidate_1 is not None and candidate_2 is not None:
+            candidate_1 = candidate_1.order_by('proficiency', 'yrOfExperience')[:int(numberOfPeople)]
+            candidate_2 = candidate_2.order_by('proficiency', 'yrOfExperience')[:int(numberOfPeople)]
+            candidate_all = list(
+                set(candidate_1.values_list('profile')).intersection(candidate_2.values_list('profile')))
+            candidate_all = [c[0] for c in candidate_all]
+            p = Profile.objects.filter(id__in=candidate_all)[:int(numberOfPeople)]
+            context['ppl'] = p
 
-        # pro = minSForm.data['proficiency']
-        # yr = minSForm.data['yrOfExperience']
-        # print(yr)
-        # candidate = Skill.objects.filter(name=skill, proficiency__gt=pro,yrOfExperience__gt=yr)
-        # context['people'] = candidate
-        # context['minForm'] = MinSkillForm()
+        context['minForm'] = MinSkillForm()
+        context['form'] = ManagerForm()
 
         return render(request, 'manager.html', context)
     else:
         context['minForm'] = MinSkillForm()
         context['form'] = ManagerForm()
         return render(request, 'manager.html', context)
-    # try:
-    #     manager = Manager.objects.create()
-    #     if request.method == 'POST':
-    #         form = ManagerForm(request.POST, instance=manager)
-    #         print (form.numberOfTeam)
-    #         return render(request, 'manager.html', context)
-    #     else:
-    #         context['minForm'] = MinSkillForm()
-    #         context['form'] = ManagerForm()
-    #         return render(request, 'manager.html', context)
-    #
-    # except:
-    #     print("error")
-    #     raise Http404
+
     return render(request, 'manager.html', context)
