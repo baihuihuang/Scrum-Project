@@ -89,12 +89,14 @@
         }else if(num == '2'){
             document.getElementById("team1").style.display = "initial";
             document.getElementById("team2").style.display = "initial";
+            document.getElementById("team2").style.display = "initial";
+            document.getElementById("team2").style.display = "initial";
         }
     }
     var sec = 1;
     function myFunction2(){
         sec++;
-        if(sec > 3) alert("You can only add 3 skills");
+        if(sec > 2) alert("You can only add 2 skills");
         else {var element = "team_primary_"+ sec;
         console.log(element);
         document.getElementById(element).style.display = "initial";}
@@ -103,7 +105,7 @@
     var sec2 = 1;
     function myFunction3(){
         sec2++;
-        if(sec2 > 3) alert("You can only add 3 skills");
+        if(sec2 > 2) alert("You can only add 2 skills");
         else {var element = "team2_primary_"+ sec2;
         console.log(element);
         document.getElementById(element).style.display = "initial";}
@@ -112,9 +114,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
 </script>
 {% endblock %}
- Section about
+Section about
 {% if people%}
 <section id="about" class="section" style="background:#f5f5f5;">
     <div class="container">
@@ -171,106 +182,257 @@
                         <div id="team_primary_1">
                             <li class="form-group">
                                 <label>Skill 1:<span></span></label>
-                                {{minForm.name}}
+                                <select name="name_skill1_team1" class="form_input" required="True">
+                                    <option value="" disabled selected>Please Choose</option>
+
+                                    <option value="Java">Java</option>
+
+                                    <option value="Python">Python</option>
+
+                                    <option value="C">C</option>
+
+                                    <option value="C++">C++</option>
+
+                                    <option value="C#">C#</option>
+
+                                    <option value="SQL">SQL</option>
+
+                                    <option value="MySQL">MySQL</option>
+
+                                    <option value="MongoDB">MongoDB</option>
+
+                                    <option value="Marketing">Marketing</option>
+
+                                    <option value="Analytics">Analytics</option>
+
+                                    <option value="Web Development">Web Development</option>
+
+                                    <option value="Design">Design</option>
+
+                                    <option value="Agile">Agile</option>
+
+                                </select>
                             </li>
                             <li class="form-group">
                                 <label>Minimum Proficiency<span></span></label>
-                                {{minForm.proficiency}}
+                                <select name="proficiency_skill1_team1" required="True" class="form_input">
+                                    <option value="" disabled selected>Please Choose</option>
+
+                                    <option value="1">1</option>
+
+                                    <option value="2">2</option>
+
+                                    <option value="3">3</option>
+
+                                    <option value="4">4</option>
+
+                                    <option value="5">5</option>
+
+                                </select>
                             </li>
                             <li class="form-group">
                                 <label>Minimum Year of experience<span></span></label>
-                                {{minForm.yrOfExperience}}
+                                <input type="number" name="yr_skill1_team1" id="yr_skill1_team1" required="True"
+                                       data-msg="Please enter at least 4 chars" data-rule="minlen:4"
+                                       value="{{yr_skill1_team1}}"
+                                       placeholder="2 (years)" class="form_input">
                             </li>
                         </div>
-                        <!--<div id="team_primary_2" style="display: none;">-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Skill 2:<span></span></label>-->
-                                <!--{{minForm.name}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Proficiency<span></span></label>-->
-                                <!--{{minForm.proficiency}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Year of experience<span></span></label>-->
-                                <!--{{minForm.yrOfExperience}}-->
-                            <!--</li>-->
-                        <!--</div>-->
-                        <!--<div id="team_primary_3" style="display: none;">-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Skill 3:<span></span></label>-->
-                                <!--{{minForm.name}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Proficiency<span></span></label>-->
-                                <!--{{minForm.proficiency}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Year of experience<span></span></label>-->
-                                <!--{{minForm.yrOfExperience}}-->
-                            <!--</li>-->
-                        <!--</div>-->
-                        <!--<li class="last">-->
-                            <!--<input type="button" onclick="myFunction2()" class="btn btn-large btn-theme" id="add"-->
-                                   <!--value="Add">-->
-                        <!--</li>-->
-                    <!--</div>-->
-                    <!--<div class="sub_li" id="team2" style="display: none;">-->
-                        <!--<h3>Team 2</h3>-->
-                        <!--<div id="team2_primary_1">-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Skill 1:<span></span></label>-->
-                                <!--{{minForm.name}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Proficiency<span></span></label>-->
-                                <!--{{minForm.proficiency}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Year of experience<span></span></label>-->
-                                <!--{{minForm.yrOfExperience}}-->
-                            <!--</li>-->
-                        <!--</div>-->
-                        <!--<div id="team2_primary_2" style="display: none;">-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Skill 2:<span></span></label>-->
-                                <!--{{minForm.name}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Proficiency<span></span></label>-->
-                                <!--{{minForm.proficiency}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Year of experience<span></span></label>-->
-                                <!--{{minForm.yrOfExperience}}-->
-                            <!--</li>-->
-                        <!--</div>-->
-                        <!--<div id="team2_primary_3" style="display: none;">-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Skill 3:<span></span></label>-->
-                                <!--{{minForm.name}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Proficiency<span></span></label>-->
-                                <!--{{minForm.proficiency}}-->
-                            <!--</li>-->
-                            <!--<li class="form-group">-->
-                                <!--<label>Minimum Year of experience<span></span></label>-->
-                                <!--{{minForm.yrOfExperience}}-->
-                            <!--</li>-->
-                        <!--</div>-->
+                        <div id="team_primary_2" style="display: none;">
+                            <li class="form-group">
+                                <label>Skill 2:<span></span></label>
+                                <select name="name_skill2_team1" id="name_skill2_team1" class="form_input">
+                                    <option value="" disabled selected>Please Choose</option>
+
+                                    <option value="Java">Java</option>
+
+                                    <option value="Python">Python</option>
+
+                                    <option value="C">C</option>
+
+                                    <option value="C++">C++</option>
+
+                                    <option value="C#">C#</option>
+
+                                    <option value="SQL">SQL</option>
+
+                                    <option value="MySQL">MySQL</option>
+
+                                    <option value="MongoDB">MongoDB</option>
+
+                                    <option value="Marketing">Marketing</option>
+
+                                    <option value="Analytics">Analytics</option>
+
+                                    <option value="Web Development">Web Development</option>
+
+                                    <option value="Design">Design</option>
+
+                                    <option value="Agile">Agile</option>
+
+                                </select>
+                            </li>
+                            <li class="form-group">
+                                <label>Minimum Proficiency<span></span></label>
+                                <select name="proficiency_skill2_team1" id="proficiency_skill2_team1"
+                                        class="form_input">
+                                    <option value="" disabled selected>Please Choose</option>
+
+                                    <option value="1">1</option>
+
+                                    <option value="2">2</option>
+
+                                    <option value="3">3</option>
+
+                                    <option value="4">4</option>
+
+                                    <option value="5">5</option>
+
+                                </select>
+                            </li>
+                            <li class="form-group">
+                                <label>Minimum Year of experience<span></span></label>
+                                <input type="number" name="yr_skill2_team1" id="yr_skill2_team1"
+                                       data-msg="Please enter at least 4 chars" data-rule="minlen:4"
+                                       value="0"
+                                       placeholder="2 (years)" class="form_input">
+                            </li>
+                        </div>
                         <li class="last">
-                            <input type="button" onclick="myFunction3()" class="btn btn-large btn-theme" id="add"
+                            <input type="button" onclick="myFunction2()" class="btn btn-large btn-theme" id="add"
                                    value="Add">
                         </li>
                     </div>
+                    <!--<div class="sub_li" id="team2" style="display: none;">-->
+                    <!--<h3>Team 2</h3>-->
+                    <!--<div id="team2_primary_1">-->
+                    <!--<li class="form-group">-->
+                    <!--<label>Skill 1:<span></span></label>-->
+                    <!--<select name="name_skill1_team2" class="form_input" required="False">-->
+                    <!--<option value="null">Please Choose</option>-->
+
+                    <!--<option value="Java">Java</option>-->
+
+                    <!--<option value="Python">Python</option>-->
+
+                    <!--<option value="C">C</option>-->
+
+                    <!--<option value="C++">C++</option>-->
+
+                    <!--<option value="C#">C#</option>-->
+
+                    <!--<option value="SQL">SQL</option>-->
+
+                    <!--<option value="MySQL">MySQL</option>-->
+
+                    <!--<option value="MongoDB">MongoDB</option>-->
+
+                    <!--<option value="Marketing">Marketing</option>-->
+
+                    <!--<option value="Analytics">Analytics</option>-->
+
+                    <!--<option value="Web Development">Web Development</option>-->
+
+                    <!--<option value="Design">Design</option>-->
+
+                    <!--<option value="Agile">Agile</option>-->
+
+                    <!--</select>-->
+                    <!--</li>-->
+                    <!--<li class="form-group">-->
+                    <!--<label>Minimum Proficiency<span></span></label>-->
+                    <!--<select name="proficiency_skill1_team2" class="form_input" required="False">-->
+                    <!--<option value="null">Please Choose</option>-->
+
+                    <!--<option value="1">1</option>-->
+
+                    <!--<option value="2">2</option>-->
+
+                    <!--<option value="3">3</option>-->
+
+                    <!--<option value="4">4</option>-->
+
+                    <!--<option value="5">5</option>-->
+
+                    <!--</select>-->
+                    <!--</li>-->
+                    <!--<li class="form-group">-->
+                    <!--<label>Minimum Year of experience<span></span></label>-->
+                    <!--<input type="number" name="yr_skill1_team2" id="yr_skill1_team2"-->
+                    <!--data-msg="Please enter at least 4 chars" data-rule="minlen:4"-->
+                    <!--placeholder="2 (years)" class="form_input" required="False">-->
+                    <!--</li>-->
+                    <!--</div>-->
+                    <!--<div id="team2_primary_2" style="display: none;">-->
+                    <!--<li class="form-group">-->
+                    <!--<label>Skill 2:<span></span></label>-->
+                    <!--<select name="name_skill3_team2" class="form_input" required="False">-->
+                    <!--<option value="null">Please Choose</option>-->
+
+                    <!--<option value="Java">Java</option>-->
+
+                    <!--<option value="Python">Python</option>-->
+
+                    <!--<option value="C">C</option>-->
+
+                    <!--<option value="C++">C++</option>-->
+
+                    <!--<option value="C#">C#</option>-->
+
+                    <!--<option value="SQL">SQL</option>-->
+
+                    <!--<option value="MySQL">MySQL</option>-->
+
+                    <!--<option value="MongoDB">MongoDB</option>-->
+
+                    <!--<option value="Marketing">Marketing</option>-->
+
+                    <!--<option value="Analytics">Analytics</option>-->
+
+                    <!--<option value="Web Development">Web Development</option>-->
+
+                    <!--<option value="Design">Design</option>-->
+
+                    <!--<option value="Agile">Agile</option>-->
+
+                    <!--</select>-->
+                    <!--</li>-->
+                    <!--<li class="form-group">-->
+                    <!--<label>Minimum Proficiency<span></span></label>-->
+                    <!--<select name="proficiency_skill2_team2" class="form_input" required="False">-->
+                    <!--<option value="null">Please Choose</option>-->
+
+                    <!--<option value="1">1</option>-->
+
+                    <!--<option value="2">2</option>-->
+
+                    <!--<option value="3">3</option>-->
+
+                    <!--<option value="4">4</option>-->
+
+                    <!--<option value="5">5</option>-->
+
+                    <!--</select>-->
+                    <!--</li>-->
+                    <!--<li class="form-group">-->
+                    <!--<label>Minimum Year of experience<span></span></label>-->
+                    <!--<input type="number" name="yr_skill2_team2"-->
+                    <!--data-msg="Please enter at least 4 chars" data-rule="minlen:4" required="False"-->
+                    <!--placeholder="4 (years)" class="form_input">-->
+                    <!--</li>-->
+                    <!--</div>-->
+                    <!--<li class="last">-->
+                    <!--<input type="button" onclick="myFunction3()" class="btn btn-large btn-theme" id="add"-->
+                    <!--value="Add">-->
+                    <!--</li>-->
                 </div>
-                <li class="last finalSub">
-                    <button class="btn btn-large btn-theme" type="submit" id="send">Submit</button>
-                </li>
-            </ul>
-            {% csrf_token %}
-        </form>
+    </div>
+    <li class="last finalSub">
+        <button class="btn btn-large btn-theme" type="submit" id="send">Submit</button>
+    </li>
+    </ul>
+    {% csrf_token %}
+    </form>
 
     </div>
 </section>

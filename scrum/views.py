@@ -23,7 +23,7 @@ def create_profile(request):
             form.save()
             profile.save()
             skill = Skill.objects.create(profile=profile)
-            SkillFormSet = modelformset_factory(Skill,form=SkillForm)
+            SkillFormSet = modelformset_factory(Skill, form=SkillForm)
             try:
                 formset = SkillFormSet(request.POST)
             except ValidationError:
@@ -34,8 +34,8 @@ def create_profile(request):
             print("sForm save")
             context['msg'] = "Submitted successful"
             context['form'] = ProfileForm()
-            context['skills'] = modelformset_factory(Skill, form=SkillForm,extra=5)
-            context['secSkills'] = modelformset_factory(Skill, form=SkillForm,extra=5)
+            context['skills'] = modelformset_factory(Skill, form=SkillForm, extra=5)
+            context['secSkills'] = modelformset_factory(Skill, form=SkillForm, extra=5)
             print("form is saved")
         else:
             context['msg'] = "Check your data"
@@ -94,27 +94,80 @@ def create_manager(request):
     return render(request, 'manager.html', context)
 
 
+# def match_team(request):
+#     context = {}
+#     manager = Manager.objects.create()
+#     min_skill = MinSkill.objects.create()
+#
+#     if request.method == 'POST':
+#         form = ManagerForm(request.POST, instance=manager)
+#         minSForm = MinSkillForm(request.POST, instance=min_skill)
+#         minSForm.save()
+#         min_skill.save()
+#         numTeam = form.data['numberOfTeam']
+#         numPeo = form.data['numberPPlOfTeam']
+#         skill = minSForm.data['name']
+#         pro = minSForm.data['proficiency']
+#         yr = minSForm.data['yrOfExperience']
+#         print(pro)
+#         print(skill)
+#         print(yr)
+#         candidate = Skill.objects.filter(name=skill, proficiency__gt=pro,yrOfExperience__gt=yr)
+#         context['people'] = candidate
+#         context['minForm'] = MinSkillForm()
+#         return render(request, 'manager.html', context)
+#     else:
+#         context['minForm'] = MinSkillForm()
+#         context['form'] = ManagerForm()
+#         return render(request, 'manager.html', context)
+#     # try:
+#     #     manager = Manager.objects.create()
+#     #     if request.method == 'POST':
+#     #         form = ManagerForm(request.POST, instance=manager)
+#     #         print (form.numberOfTeam)
+#     #         return render(request, 'manager.html', context)
+#     #     else:
+#     #         context['minForm'] = MinSkillForm()
+#     #         context['form'] = ManagerForm()
+#     #         return render(request, 'manager.html', context)
+#     #
+#     # except:
+#     #     print("error")
+#     #     raise Http404
+#     return render(request, 'manager.html', context)
+
 def match_team(request):
     context = {}
     manager = Manager.objects.create()
     min_skill = MinSkill.objects.create()
 
     if request.method == 'POST':
-        form = ManagerForm(request.POST, instance=manager)
-        minSForm = MinSkillForm(request.POST, instance=min_skill)
-        minSForm.save()
-        min_skill.save()
-        numTeam = form.data['numberOfTeam']
-        numPeo = form.data['numberPPlOfTeam']
-        skill = minSForm.data['name']
-        pro = minSForm.data['proficiency']
-        yr = minSForm.data['yrOfExperience']
-        print(pro)
-        print(skill)
-        print(yr)
-        candidate = Skill.objects.filter(name=skill, proficiency__gt=pro,yrOfExperience__gt=yr)
-        context['people'] = candidate
-        context['minForm'] = MinSkillForm()
+
+        # all the value from team1
+        name_skill1_team1 = request.POST["name_skill1_team1"]
+        proficiency_skill1_team1 = request.POST["proficiency_skill1_team1"]
+        yr_skill1_team1 = request.POST["yr_skill1_team1"]
+        candidate_1 = Skill.objects.filter(name=name_skill1_team1, proficiency__gt=proficiency_skill1_team1,
+                                           yrOfExperience__gt=yr_skill1_team1)
+        for c in candidate_1:
+            print(c.name)
+        if 'name_skill2_team1' in request.POST:
+            name_skill2_team1 = request.POST["name_skill2_team1"]
+            proficiency_skill2_team1 = request.POST["proficiency_skill2_team1"]
+            yr_skill2_team1 = request.POST["yr_skill2_team1"]
+            candidate_2 = Skill.objects.filter(name=name_skill2_team1, proficiency__gt=proficiency_skill2_team1,
+                                               yrOfExperience__gt=yr_skill2_team1)
+            for c in candidate_2:
+                print(c.name)
+
+
+        # pro = minSForm.data['proficiency']
+        # yr = minSForm.data['yrOfExperience']
+        # print(yr)
+        # candidate = Skill.objects.filter(name=skill, proficiency__gt=pro,yrOfExperience__gt=yr)
+        # context['people'] = candidate
+        # context['minForm'] = MinSkillForm()
+
         return render(request, 'manager.html', context)
     else:
         context['minForm'] = MinSkillForm()
