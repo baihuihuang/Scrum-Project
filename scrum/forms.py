@@ -9,7 +9,39 @@ class ProfileForm(forms.ModelForm):
         ('NO', 'No')
     )
 
+    TIME = (
+        ('null', 'Please Choose'),
+        ('UTC -12', 'UTC -12'),
+        ('UTC -11', 'UTC -11'),
+        ('UTC -10', 'UTC -10'),
+        ('UTC -9', 'UTC -9'),
+        ('UTC -8', 'UTC -8'),
+        ('UTC -7', 'UTC -7'),
+        ('UTC -6', 'UTC -6'),
+        ('UTC -5', 'UTC -5'),
+        ('UTC -4', 'UTC -4'),
+        ('UTC -3', 'UTC -3'),
+        ('UTC -2', 'UTC -2'),
+        ('UTC -1', 'UTC -1'),
+        ('UTC +-0', 'UTC +-0'),
+        ('UTC +1', 'UTC +1'),
+        ('UTC +2', 'UTC +2'),
+        ('UTC +3', 'UTC +3'),
+        ('UTC +4', 'UTC +4'),
+        ('UTC +5', 'UTC +5'),
+        ('UTC +6', 'UTC +6'),
+        ('UTC +7', 'UTC +7'),
+        ('UTC +8', 'UTC +8'),
+        ('UTC +9', 'UTC +9'),
+        ('UTC +10', 'UTC +10'),
+        ('UTC +11', 'UTC +11'),
+        ('UTC +12', 'UTC +12'),
+        ('UTC +13', 'UTC +13'),
+
+    )
+
     availability = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=AVA_OPTION)
+    timeZone = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TIME)
 
     class Meta:
         model = Profile
@@ -50,12 +82,8 @@ class SkillForm(forms.ModelForm):
         ('Agile', 'Agile')
     )
 
-    TIME = (
-
-    )
     proficiency = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=PRO_LEVEL)
     name = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=SKILLS)
-    timeZone = forms.ChoiceField(widget=forms.Select(attrs={'class':'form_input'}), choices=TIME)
 
     class Meta:
         model = Skill
