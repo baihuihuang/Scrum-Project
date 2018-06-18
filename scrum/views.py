@@ -6,10 +6,14 @@ from scrum.models import *
 from scrum.forms import ProfileForm, SkillForm, ManagerForm, MinSkillForm
 from django.http import Http404
 from django.forms import modelformset_factory
+from django import template
+
+register = template.Library()
 
 
 def home(request):
     context = {}
+    context['people'] = Profile.objects.all()
     context['people'] = Profile.objects.all()
     return render(request, 'home.html', context)
 
@@ -112,7 +116,7 @@ def match_team(request):
                                            yrOfExperience__gt=yr_skill1_team1)
         candidate_2 = None
 
-        if 'name_skill2_team1' in request.POST:
+        if 'name_skill2_team1' in request.POST and 'name_skill1_team2' not in request.POST:
             name_skill2_team1 = request.POST["name_skill2_team1"]
             proficiency_skill2_team1 = request.POST["proficiency_skill2_team1"]
             yr_skill2_team1 = request.POST["yr_skill2_team1"]
@@ -134,6 +138,7 @@ def match_team(request):
             p = Profile.objects.filter(id__in=candidate_all)[:int(numberOfPeople)]
             context['ppl'] = p
 
+
         context['minForm'] = MinSkillForm()
         context['form'] = ManagerForm()
 
@@ -144,3 +149,7 @@ def match_team(request):
         return render(request, 'manager.html', context)
 
     return render(request, 'manager.html', context)
+
+@register.filter(name='cut')
+def cut(value):
+    return value.length

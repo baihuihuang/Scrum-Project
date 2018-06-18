@@ -121,6 +121,9 @@
 
 
 
+
+
+
 </script>
 
 {% endblock %}
@@ -142,21 +145,18 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Dept.</th>
-                    <th>Skill 1</th>
+                    <th>Primary Skill 1</th>
                     <th>Pro Level</th>
-                    <th>Exp year</th>
-                    <th>Skill 2</th>
+                    <th>Primary Skill 2</th>
                     <th>Pro Level</th>
-                    <th>Exp year</th>
-                    <th>Skill 3</th>
+                    <th>Primary Skill 3</th>
                     <th>Pro Level</th>
-                    <th>Exp year</th>
-                    <th>Skill 4</th>
+                    <th>Secondary Skill 1</th>
                     <th>Pro Level</th>
-                    <th>Exp year</th>
-                    <th>Skill 5</th>
+                    <th>Secondary Skill 2</th>
                     <th>Pro Level</th>
-                    <th>Exp year</th>
+                    <th>Secondary Skill 3</th>
+                    <th>Pro Level</th>
                 </tr>
                 {% for p in people%}
                 <tr>
@@ -164,38 +164,13 @@
                     <td>{{p.lastName}}</td>
                     <td>{{p.department}}</td>
                     {% for s in p.skillSet.all|default:"none"%}
+                    {% if s.type == 'P'%}
                     <td>{{s.name}}</td>
                     <td>{{s.proficiency}}</td>
-                    <td>{{s.yrOfExperience}}</td>
+                    {% endif %}
                     {% endfor %}
-                    {% if p.skillSet == None%}
-                    <td></td>
-                    <td></td>
-                    <td></td>
 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    {% endif %}
-                    {% if p.skillSet.count == 1%}
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    {% if p.pSkillCount == 0%}
                     <td></td>
                     <td></td>
                     <td></td>
@@ -203,19 +178,47 @@
                     <td></td>
                     <td></td>
                     {% endif %}
-                    {% if p.skillSet.count == 2%}
+
+                    {% if p.pSkillCount == 1%}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    {% endif %}
+                    {% if p.pSkillCount == 1%}
+                    <td></td>
+                    <td></td>
+                    {% endif %}
+
+                    {% for s in p.skillSet.all|default:"none"%}
+                    {% if s.type == 'S'%}
+                    <td>{{s.name}}</td>
+                    <td>{{s.proficiency}}</td>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if p.sSkillCount == 0%}
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
+                    {% endif %}
+
+                    {% if p.sSkillCount == 1%}
                     <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    {% endif %}
+                    {% if p.sSkillCount == 1%}
                     <td></td>
                     <td></td>
                     {% endif %}
                 </tr>
                 {% endfor %}
+
             </table>
         </div>
     </div>

@@ -19,6 +19,8 @@ class Profile(models.Model):
     email = models.CharField(blank=True, null=True, max_length=50)
     created_at = models.DateTimeField(default=timezone.now())
     timeZone = models.CharField(blank=True, null=True, max_length=50)
+    pSkillCount = models.IntegerField(default=0)
+    sSkillCount = models.IntegerField(default=0)
 
 
 class Skill(models.Model):
@@ -28,8 +30,7 @@ class Skill(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='skillSet')
     type = models.CharField(blank=True, null=True, max_length=1)
 
-    def getProfile(self):
-        return Profile.objects.get(id=self.id)
+
 
 class Manager(models.Model):
     numberOfTeam = models.IntegerField(null=True, name="numberOfTeam")
