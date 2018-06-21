@@ -120,12 +120,3 @@ jQuery(document).ready(function($) {
 //});
 
 
-$(window).scroll(function() {
-  "use strict";
-  if ($(window).scrollTop() < 10) {
-
-    $('.fade').stop(true, true).fadeTo("slow", 1);
-  } else {
-    $('.fade').stop(true, true).fadeTo("slow", 0.33);
-  }
-});

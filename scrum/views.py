@@ -15,6 +15,12 @@ def home(request):
     return render(request, 'home.html', context)
 
 
+def home_sortByLocation(request):
+    context = {}
+    context['people'] = Profile.objects.order_by('city')
+    return render(request, 'home.html', context)
+
+
 def create_profile(request):
     context = {}
     profile = Profile.objects.create()

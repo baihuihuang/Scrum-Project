@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- styles -->
 
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
@@ -111,17 +114,18 @@
 
     }
 
+document.addEventListener("DOMContentLoaded", function(event) {
+  $('.skill_pro').each(function() {
+    var goodSkill = $(this).text();
+    if(parseInt(goodSkill) > 3) $(this).css("background-color", "#4bbb8b");
+ })
+});
 
 
 
-
-
-
-
-
-
-
-
+$('a').click(function() {
+    alert( "Handler for .click() called." );
+});
 
 
 </script>
@@ -140,12 +144,16 @@
             </div>
         </div>
         <div class="span12">
-            <table>
+            <table id="mytable">
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Dept.</th>
-                    <th>Location</th>
+                    <th>Location
+                        <a href="{% url 'sortByLocation' %}">
+                            <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                        </a>
+                    </th>
                     <th>Timezone</th>
                     <th>Java</th>
                     <th>Python</th>
@@ -161,27 +169,27 @@
                     <th>Design</th>
                     <th>Agile</th>
                 </tr>
-                
+
                 {% for p in people%}
                 <tr>
-                    <td>{{p.firstName}}</td> 
-                    <td>{{p.lastName}}</td> 
+                    <td>{{p.firstName}}</td>
+                    <td>{{p.lastName}}</td>
                     <td>{{p.department}}</td>
-                    <td>{{p.city}}</td>  
+                    <td>{{p.city}}</td>
                     <td>{{p.timeZone}}</td>
-                    <td>{{ p|java}}</td>
-                    <td>{{ p|python}}</td>
-                    <td>{{ p|c}}</td>
-                    <td>{{ p|c_plus}}</td>
-                    <td>{{ p|c_sharp}}</td>
-                    <td>{{ p|sql}}</td>
-                    <td>{{ p|mysql}}</td>
-                    <td>{{ p|mongodb}}</td>
-                    <td>{{ p|marketing}}</td>
-                    <td>{{ p|analytics}}</td>
-                    <td>{{ p|web}}</td>
-                    <td>{{ p|design}}</td>
-                    <td>{{ p|agile}}</td>
+                    <td class="skill_pro">{{ p|java}}</td>
+                    <td class="skill_pro">{{ p|python}}</td>
+                    <td class="skill_pro">{{ p|c}}</td>
+                    <td class="skill_pro">{{ p|c_plus}}</td>
+                    <td class="skill_pro">{{ p|c_sharp}}</td>
+                    <td class="skill_pro">{{ p|sql}}</td>
+                    <td class="skill_pro">{{ p|mysql}}</td>
+                    <td class="skill_pro">{{ p|mongodb}}</td>
+                    <td class="skill_pro">{{ p|marketing}}</td>
+                    <td class="skill_pro">{{ p|analytics}}</td>
+                    <td class="skill_pro">{{ p|web}}</td>
+                    <td class="skill_pro">{{ p|design}}</td>
+                    <td class="skill_pro">{{ p|agile}}</td>
 
                 </tr>
                 {% endfor %}
