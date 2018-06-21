@@ -6,14 +6,11 @@ from scrum.models import *
 from scrum.forms import ProfileForm, SkillForm, ManagerForm, MinSkillForm
 from django.http import Http404
 from django.forms import modelformset_factory
-from django import template
 
-register = template.Library()
 
 
 def home(request):
     context = {}
-    context['people'] = Profile.objects.all()
     context['people'] = Profile.objects.all()
     return render(request, 'home.html', context)
 
@@ -150,6 +147,4 @@ def match_team(request):
 
     return render(request, 'manager.html', context)
 
-@register.filter(name='cut')
-def cut(value):
-    return value.length
+

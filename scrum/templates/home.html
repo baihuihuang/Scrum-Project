@@ -128,7 +128,7 @@
 
 {% endblock %}
 
-
+{% load poll %}
 <!-- section intro -->
 <section id="about" class="section">
     <div class="container">
@@ -169,11 +169,19 @@
                     <td>{{p.department}}</td>
                     <td>{{p.city}}</td>  
                     <td>{{p.timeZone}}</td>
-                    <td>{{p.skillSet.filter() }}</td>
-               
-
-
-
+                    <td>{{ p|java}}</td>
+                    <td>{{ p|python}}</td>
+                    <td>{{ p|c}}</td>
+                    <td>{{ p|c_plus}}</td>
+                    <td>{{ p|c_sharp}}</td>
+                    <td>{{ p|sql}}</td>
+                    <td>{{ p|mysql}}</td>
+                    <td>{{ p|mongodb}}</td>
+                    <td>{{ p|marketing}}</td>
+                    <td>{{ p|analytics}}</td>
+                    <td>{{ p|web}}</td>
+                    <td>{{ p|design}}</td>
+                    <td>{{ p|agile}}</td>
 
                 </tr>
                 {% endfor %}
