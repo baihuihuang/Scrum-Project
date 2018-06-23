@@ -32,13 +32,11 @@ def create_profile(request):
             profile.save()
             skill = Skill.objects.create(profile=profile)
             SkillFormSet = modelformset_factory(Skill, form=SkillForm)
-            try:
-                formset = SkillFormSet(request.POST)
-            except ValidationError:
-                formset = None
+            # try:
+            #     formset = SkillFormSet(request.POST)
+            # except ValidationError:
+            #     formset = None
 
-            formset.save()
-            print(formset.has_changed())
             print("sForm save")
             context['msg'] = "Submitted successful"
             context['form'] = ProfileForm()
