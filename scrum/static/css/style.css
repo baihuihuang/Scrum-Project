@@ -1397,6 +1397,8 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
+    font-size: 0.7rem;
 }
 
 td, th {

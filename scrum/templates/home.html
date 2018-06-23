@@ -117,7 +117,10 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   $('.skill_pro').each(function() {
     var goodSkill = $(this).text();
-    if(parseInt(goodSkill) > 3) $(this).css("background-color", "#4bbb8b");
+    if(parseInt(goodSkill) > 3) {
+        $(this).css("background-color", "#0088CC");
+        $(this).css("color", "white");
+    }
  })
 });
 
@@ -165,7 +168,7 @@ $('a').click(function() {
                     <th>MongoDB</th>
                     <th>Marketing</th>
                     <th>Analytics</th>
-                    <th>Web Development</th>
+                    <th>Web Dev</th>
                     <th>Design</th>
                     <th>Agile</th>
                 </tr>
