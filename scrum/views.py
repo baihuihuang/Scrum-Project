@@ -8,11 +8,12 @@ from django.http import Http404
 from django.forms import modelformset_factory
 
 
-
 def home(request):
     context = {}
-    context['people'] = Profile.objects.all()
-    return render(request, 'home.html', context)
+    context['form'] = ProfileForm()
+    context['skills'] = modelformset_factory(Skill, form=SkillForm)
+    context['secSkills'] = modelformset_factory(Skill, form=SkillForm)
+    return render(request, 'profile.html', context)
 
 
 def home_sortByLocation(request):
@@ -153,4 +154,8 @@ def match_team(request):
 
     return render(request, 'manager.html', context)
 
+def matrix_show(request):
+    context = {}
+    context['people'] = Profile.objects.all()
+    return render(request, 'matrix.html', context)
 
