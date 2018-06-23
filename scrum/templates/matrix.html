@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- styles -->
 
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
@@ -63,9 +66,9 @@
                 <div class="navigation">
                     <nav>
                         <ul class="nav pull-right">
-                            <li class="current"><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'home' %}">Home</a></li>
                             <!--<li><a href="{% url 'createProfile' %}">Profile</a></li>-->
-                            <li><a href="{% url 'matrix' %}">Matrix</a></li>
+                            <li class="current"><a href="{% url 'matrix' %}">Matrix</a></li>
                             <!--<li><a href="{% url 'createManager' %}">Manager</a></li>-->
                         </ul>
                     </nav>
@@ -76,8 +79,6 @@
     </div>
     <!-- end top -->
 </header>
-<!-- section intro -->
-<!-- end intro -->
 {% block javascript %}
 <script>
     var num = 1;
@@ -103,119 +104,88 @@
 
     }
 
+document.addEventListener("DOMContentLoaded", function(event) {
+  $('.skill_pro').each(function() {
+    var goodSkill = $(this).text();
+    if(parseInt(goodSkill) > 3) $(this).css("background-color", "#4bbb8b");
+ })
+});
 
 
 
+$('a').click(function() {
+    alert( "Handler for .click() called." );
+});
 
 
 </script>
 
 {% endblock %}
 
-
+{% load poll %}
 <!-- section intro -->
-<section id="profile">
+<section id="about" class="section">
     <div class="container">
         <div class="row">
             <div class="span12">
                 <div class="heading">
-                    <h3><span>Profile Editor</span></h3>
-                </div>
-                <div class="sub-heading">
+                    <h3><span>All the profile</span></h3>
                 </div>
             </div>
         </div>
-        <form action="{% url 'createProfile' %}" method="post" role="form" class="contactForm">
-            <div id="msg">{{msg}}</div>
-            <div id="sendmessage"></div>
-            <div id="errormessage"></div>
+        <div class="span12">
+            <table id="mytable">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Dept.</th>
+                    <th>Location
+                        <a href="{% url 'sortByLocation' %}">
+                            <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                        </a>
+                    </th>
+                    <th>Timezone</th>
+                    <th>Java</th>
+                    <th>Python</th>
+                    <th>C</th>
+                    <th>C++</th>
+                    <th>C#</th>
+                    <th>SQL</th>
+                    <th>MySQL</th>
+                    <th>MongoDB</th>
+                    <th>Marketing</th>
+                    <th>Analytics</th>
+                    <th>Web Development</th>
+                    <th>Design</th>
+                    <th>Agile</th>
+                </tr>
 
-            <ul class="contact-list">
-                <li class="form-group">
-                    <label>First Name <span>*</span></label>
-                    {{form.firstName}}
-                </li>
-                <li class="form-group">
-                    <label>Last Name <span>*</span></label>
-                    {{form.lastName}}
-                </li>
-                <li class="form-group">
-                    <label>Department <span>*</span></label>
-                    {{form.department}}
-                </li>
-                <li class="form-group">
-                    <label>Email <span>*</span></label>
-                    {{form.email}}
-                </li>
-                <li class="form-group">
-                    <label>Phone <span>*</span></label>
-                    {{form.phone}}
-                </li>
-                <li class="form-group">
-                    <label>Availability<span>*</span></label>
-                    {{form.availability}}
-                </li>
-                <li class="form-group">
-                    <label>TimeZone<span>*</span></label>
-                    {{form.timeZone}}
-                </li>
-                <div class="skill">
-                    <div class="sub_li">
-                        <h3>Primary skills</h3>
-                        {{ skills.management_form }}
+                {% for p in people%}
+                <tr>
+                    <td>{{p.firstName}}</td>
+                    <td>{{p.lastName}}</td>
+                    <td>{{p.department}}</td>
+                    <td>{{p.city}}</td>
+                    <td>{{p.timeZone}}</td>
+                    <td class="skill_pro">{{ p|java}}</td>
+                    <td class="skill_pro">{{ p|python}}</td>
+                    <td class="skill_pro">{{ p|c}}</td>
+                    <td class="skill_pro">{{ p|c_plus}}</td>
+                    <td class="skill_pro">{{ p|c_sharp}}</td>
+                    <td class="skill_pro">{{ p|sql}}</td>
+                    <td class="skill_pro">{{ p|mysql}}</td>
+                    <td class="skill_pro">{{ p|mongodb}}</td>
+                    <td class="skill_pro">{{ p|marketing}}</td>
+                    <td class="skill_pro">{{ p|analytics}}</td>
+                    <td class="skill_pro">{{ p|web}}</td>
+                    <td class="skill_pro">{{ p|design}}</td>
+                    <td class="skill_pro">{{ p|agile}}</td>
 
-                        {% for skill in skills%}
-                        <div id="primary_{{ forloop.counter }}" style="display: none;">
-                            <li class="form-group">
-                                <label>Skill {{ forloop.counter }}:<span></span></label>
-                                {{skill.name}}
-                            </li>
-                            <li class="form-group">
-                                <label>Proficiency<span></span></label>
-                                {{skill.proficiency}}
-                            </li>
-                            <li class="form-group">
-                                <label>Year of experience<span></span></label>
-                                {{skill.yrOfExperience}}
-                            </li>
-                        </div>
-                        {% endfor %}
-                        <li class="last">
-                            <input type="button" onclick="myFunction()" class="btn btn-large btn-theme" id="add"
-                                   value="Add">
-                        </li>
-                    </div>
-                    <div class="sub_li">
-                        <h3>Secondary skills</h3>
-                        {% for skill in secSkills%}
-                        <div id="sec_{{ forloop.counter }}" style="display: none;">
-                            <li class="form-group">
-                                <p>Skill {{ forloop.counter }}:<span></span></p>
-                                {{skill.name}}
-                            </li>
-                            <li class="form-group">
-                                <label>Proficiency<span></span></label>
-                                {{skill.proficiency}}
-                            </li>
-                            <li class="form-group">
-                                <label>Year of experience<span></span></label>
-                                {{skill.yrOfExperience}}
-                            </li>
-                        </div>
-                        {% endfor %}
-                        <li class="last">
-                            <input type="button" onclick="myFunction2()" class="btn btn-large btn-theme" id="add"
-                                   value="Add">
-                        </li>
-                    </div>
-                </div>
-                <li class="last finalSub">
-                    <button class="btn btn-large btn-theme" type="submit" id="send">Submit</button>
-                </li>
-            </ul>
-            {% csrf_token %}
-        </form>
+                </tr>
+                {% endfor %}
 
+            </table>
+        </div>
     </div>
 </section>
 <!-- end intro -->
