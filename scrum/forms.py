@@ -52,6 +52,7 @@ class ProfileForm(forms.ModelForm):
             'department': forms.TextInput(attrs={'type': 'text','class':'form_input', 'placeholder':'Your Department','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
             'email': forms.EmailInput(attrs={'type': 'text','class':'form_input', 'placeholder':'Your Email','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
             'phone': forms.TextInput(attrs={'type': 'text','class':'form_input', 'placeholder':'412-400-1234','data-rule':'minlen:4', 'data-msg':'Please enter at least 4 chars', 'required':'True'}),
+            'city': forms.TextInput(attrs={'type': 'text','class':'form_input', 'placeholder':'Pittsburgh','data-rule':'minlen:4', 'data-msg':'Please enter your city', 'required':'True'}),
         }
 
 
