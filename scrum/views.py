@@ -19,8 +19,12 @@ def home(request):
 def home_sortByLocation(request):
     context = {}
     context['people'] = Profile.objects.order_by('city')
-    return render(request, 'home.html', context)
+    return render(request, 'matrix.html', context)
 
+def home_sortByTimeZone(request):
+    context = {}
+    context['people'] = Profile.objects.order_by('timeZone')
+    return render(request, 'matrix.html', context)
 
 def create_profile(request):
     context = {}
