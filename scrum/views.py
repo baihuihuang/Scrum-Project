@@ -24,6 +24,35 @@ def home_sortByLocation(request):
 def home_sortByTimeZone(request):
     context = {}
     context['people'] = Profile.objects.order_by('timeZone')
+    TIME = {
+        -12: 'UTC -12',
+        -11: 'UTC -11',
+        -10: 'UTC -10',
+         -9: 'UTC -9',
+         -8: 'UTC -8' ,
+         -7: 'UTC -7' ,
+         -6: 'UTC -6' ,
+         -5: 'UTC -5' ,
+         -4: 'UTC -4' ,
+         -3: 'UTC -3' ,
+         -2: 'UTC -2' ,
+         -1: 'UTC -1' ,
+          0: 'UTC +-0',
+          1: 'UTC +1' ,
+          2: 'UTC +2' ,
+          3: 'UTC +3' ,
+          4: 'UTC +4' ,
+          5: 'UTC +5' ,
+          6: 'UTC +6' ,
+          7: 'UTC +7' ,
+          8: 'UTC +8' ,
+          9: 'UTC +9' ,
+         10: 'UTC +10',
+         11: 'UTC +11',
+         12: 'UTC +12',
+         13: 'UTC +13'
+    }
+    context['TIME'] = TIME
     return render(request, 'matrix.html', context)
 
 def create_profile(request):
@@ -33,9 +62,10 @@ def create_profile(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            profile.timeZone = request.POST['timeZone']
             profile.save()
             skill = Skill.objects.create(profile=profile)
-            SkillFormSet = modelformset_factory(Skill, form=SkillForm)
+            # SkillFormSet = modelformset_factory(Skill, form=SkillForm)
             # try:
             #     formset = SkillFormSet(request.POST)
             # except ValidationError:
@@ -46,6 +76,7 @@ def create_profile(request):
             context['form'] = ProfileForm()
             context['skills'] = modelformset_factory(Skill, form=SkillForm, extra=5)
             context['secSkills'] = modelformset_factory(Skill, form=SkillForm, extra=5)
+
             print("form is saved")
         else:
             context['msg'] = "Check your data"

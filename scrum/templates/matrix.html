@@ -113,7 +113,45 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $(this).css("color", "white");
     }
  })
-});
+    var dic =  {
+        '-12': 'UTC -12',
+        '-11': 'UTC -11',
+        '-10': 'UTC -10',
+         '-9': 'UTC -9',
+         '-8': 'UTC -8' ,
+         '-7': 'UTC -7' ,
+         '-6': 'UTC -6' ,
+         '-5': 'UTC -5' ,
+         '-4': 'UTC -4' ,
+         '-3': 'UTC -3' ,
+         '-2': 'UTC -2' ,
+         '-1': 'UTC -1' ,
+          '0': 'UTC +-0',
+          '1': 'UTC +1' ,
+          '2': 'UTC +2' ,
+          '3': 'UTC +3' ,
+          '4': 'UTC +4' ,
+          '5': 'UTC +5' ,
+          '6': 'UTC +6' ,
+          '7': 'UTC +7' ,
+          '8': 'UTC +8' ,
+          '9': 'UTC +9' ,
+         '10': 'UTC +10',
+         '11': 'UTC +11',
+         '12': 'UTC +12',
+         '13': 'UTC +13'
+    };
+ //   console.log(dic["-12"]);
+
+    $('.timeZone').each(function() {
+        var ele = $(this).text();
+        console.log(ele);
+         $(this).text(dic[ele]);
+    })
+    
+
+}) ;
+
 
 
 
@@ -169,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     <td>{{p.lastName}}</td>
                     <td>{{p.department}}</td>
                     <td>{{p.city}}</td>
-                    <td>{{p.timeZone}}</td>
+                    <td class="timeZone">{{p.timeZone}}</td>
                     <td class="skill_pro">{{ p|java}}</td>
                     <td class="skill_pro">{{ p|python}}</td>
                     <td class="skill_pro">{{ p|c}}</td>

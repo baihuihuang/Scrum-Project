@@ -25,7 +25,7 @@ SECRET_KEY = 'u&v%ej0++ff1^h*63ut1f$tz*j6e67210y^vmgdw^lk#oymtqb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.thementorship.com.tw','thementorship.com.tw','thementorship.tw','www.thementorship.tw','13.58.212.95','18.219.118.212','localhost','127.0.0.1','18.217.138.84']
+ALLOWED_HOSTS = ['18.191.142.124', 'www.thementorship.com.tw','thementorship.com.tw','thementorship.tw','www.thementorship.tw','13.58.212.95','18.219.118.212','localhost','127.0.0.1','18.217.138.84']
 
 # Application definition
 

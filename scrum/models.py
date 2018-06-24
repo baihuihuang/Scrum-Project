@@ -18,7 +18,7 @@ class Profile(models.Model):
     phone = models.CharField(blank=True, null=True, max_length=50)
     email = models.CharField(blank=True, null=True, max_length=50)
     created_at = models.DateTimeField(default=timezone.now())
-    timeZone = models.CharField(blank=True, null=True, max_length=50)
+    timeZone = models.IntegerField(blank=True, null=True, max_length=50)
     pSkillCount = models.IntegerField(default=0)
     sSkillCount = models.IntegerField(default=0)
 
